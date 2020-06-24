@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import BookForm from "./components/BookForm";
+import BookList from "./components/BookList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    books: []
+  };
+
+  addBook = book => {
+    this.setState(state => ({
+      books: [book, ...state.books]
+    }));
+  };
+
+  render() {
+    // let books = [];
+    // let books = this.state.books;
+    return (
+      <div>
+        <h1> React to Redux</h1>
+        <BookForm onSubmit={this.addBook} />
+        <BookList books={this.state.books} />
+        <h5> {console.log("1", this.state.books)}</h5>
+      </div>
+    );
+  }
 }
 
 export default App;
+//bookName="" onSubmit={this.addBook}
