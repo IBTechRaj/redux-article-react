@@ -12,20 +12,21 @@ class App extends React.Component {
       books: [book, ...state.books]
     }));
   };
+  removeBook = id => {
+    this.setState({
+      books: this.state.books.filter(book => book.id !== id)
+    });
+  };
 
   render() {
-    // let books = [];
-    // let books = this.state.books;
     return (
       <div>
         <h1> React to Redux</h1>
         <BookForm onSubmit={this.addBook} />
-        <BookList books={this.state.books} />
-        <h5> {console.log("1", this.state.books)}</h5>
+        <BookList books={this.state.books} removeBook={this.removeBook} />
       </div>
     );
   }
 }
 
 export default App;
-//bookName="" onSubmit={this.addBook}

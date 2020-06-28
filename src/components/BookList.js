@@ -1,13 +1,16 @@
 import React from "react";
+import Book from "./Book";
 
-// export default class BookList extends React.Component {
 const BookList = props => {
   return (
-    <ul>
+    <div>
       {props.books.map(book => (
-        <div>{book}</div>
+        <ul key={book.id.toString()}>
+          <Book book={book} onDelete={() => props.removeBook(book.id)} />
+        </ul>
       ))}
-    </ul>
+    </div>
   );
 };
+
 export default BookList;

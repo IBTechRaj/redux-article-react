@@ -17,9 +17,9 @@ export default class BookForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("A name was submitted: " + this.state.title);
     event.preventDefault();
     this.props.onSubmit({
+      id: Date.now(),
       title: this.state.title
     });
     this.setState({
@@ -37,9 +37,7 @@ export default class BookForm extends React.Component {
           placeholder="Book Title"
           onChange={this.handleChange}
         />
-        <br />
         <input type="submit" value="Submit" />
-        <h1>{this.state.title}</h1>
       </form>
     );
   }
