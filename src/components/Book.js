@@ -1,11 +1,13 @@
 import React from "react";
 
 const Book = props => {
-  const { book } = props;
+  const { book, removeBook } = props;
+  const handleRemoveBook = () => removeBook(book.id);
+
   return (
     <div>
       <div>
-        {book.title} <button onClick={props.onDelete}>Delete</button>
+        {book.title} <button onClick={handleRemoveBook}>Delete</button>
       </div>
     </div>
   );

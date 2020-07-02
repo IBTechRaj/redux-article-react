@@ -1,6 +1,9 @@
 import React from "react";
+//react
+import { connect } from "react-redux";
+import { addBook } from "../actions";
 
-export default class BookForm extends React.Component {
+class BookForm extends React.Component {
   constructor() {
     super();
     this.state = { title: "" };
@@ -18,13 +21,21 @@ export default class BookForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onSubmit({
-      id: Date.now(),
-      title: this.state.title
-    });
-    this.setState({
-      title: ""
-    });
+    // this.props.onSubmit({
+
+    const { title } = this.state;
+    const { addBook } = this.props;
+
+    if (title) {
+      // id: Date.now();
+      // title: this.state.title;
+      addBook(title);
+      console.log("1a", title);
+      // });
+      this.setState({
+        title: ""
+      });
+    }
   }
 
   render() {
@@ -42,3 +53,5 @@ export default class BookForm extends React.Component {
     );
   }
 }
+
+export default connect(null, { addBook })(BookForm);
